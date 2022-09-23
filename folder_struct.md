@@ -14,3 +14,8 @@ asreview makita template arfi
 touch LICENSE.txt
 sh jobs.sh
 ```
+
+
+```python
+files = list(map(str,Path(".").glob("**/*")))
+```

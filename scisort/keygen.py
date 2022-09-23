@@ -13,6 +13,25 @@ FILE_RANKING = [
         re.compile("install.*", flags=re.IGNORECASE),
         re.compile("setup.*", flags=re.IGNORECASE),
         "requirements.txt",
+    ],
+    # level 3: Citation
+    [
+        re.compile("citation.*", flags=re.IGNORECASE)
+    ],
+    # level 4: Data
+    [
+        re.compile("data.*", flags=re.IGNORECASE)
+    ],
+    # level 5: Scripts
+    [
+        re.compile("scripts.*", flags=re.IGNORECASE),
+        re.compile("src.*", flags=re.IGNORECASE),
+        re.compile("code.*", flags=re.IGNORECASE),
+    ],
+    # level 6: Results
+    [
+        re.compile("output.*", flags=re.IGNORECASE),
+        re.compile("results.*", flags=re.IGNORECASE)
     ]
 ]
 
