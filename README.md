@@ -6,28 +6,19 @@ WIP
 
 Scisort requires Python 3.6 or later.
 
-```
+```sh
 pip install scisort
 ```
 
 ## Getting started
 
-```
-files = [
-    "data",
-    "README.md",
-    "scripts",
-    "installation.R",
-    "requirements.txt",
-    "tests"
-]
-```
+### Traditional sorting
 
-```
+```python
 from pathlib import Path
 
-def show_dir(path):
-    for f in sorted(path.iterdir()):
+def show_dir(p):
+    for f in sorted(Path(p).iterdir()):
         if f.is_file():
             print(f)
         else:
@@ -35,8 +26,8 @@ def show_dir(path):
 
 ```
 
-```
->>> show_dir(Path("example/example_makita"))
+```python
+>>> show_dir("example/example_makita")
 LICENSE.txt
 README.md
 data/Bos_2018.csv
@@ -76,18 +67,17 @@ scripts/get_plot.py
 scripts/merge_descriptives.py
 scripts/merge_metrics.py
 ```
-
-
+<!--
 Normal sorting
 ```
 sorted(files)
 ```
-
+ -->
 <!--
 print(json.dumps(sorted(files), indent=4))
 
  -->
-
+<!--
 Results in
 ```
 [
@@ -98,7 +88,7 @@ Results in
     "scripts",
     "tests"
 ]
-```
+``` -->
 
 The order is not intuitive.
 
@@ -114,19 +104,19 @@ The order is not intuitive.
     "tests"
 ] -->
 
-```
+```python
 import scisort
 
 sorted(files, key=scisort.scisort_keygen)
 ```
 
 Same code as in the previous example, but now with a different sort key.
-```
+```python
 import scisort
 from pathlib import Path
 
-def show_dir(path):
-    for f in sorted(path.iterdir(), key=scisort.scisort_keygen):
+def show_dir(p):
+    for f in sorted(Path(p).iterdir(), key=scisort.scisort_keygen):
         if f.is_file():
             print(f)
         else:
@@ -134,8 +124,8 @@ def show_dir(path):
 
 ```
 
-```
->>> show_dir(Path("example/example_makita"))
+```python
+>>> show_dir("example/example_makita")
 README.md
 LICENSE.txt
 data/Bos_2018.csv
@@ -177,7 +167,7 @@ scripts/merge_metrics.py
 
 ```
 
-```
+```python
 [
     "README.md",
     "installation.R",
