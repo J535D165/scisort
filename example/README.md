@@ -1,4 +1,6 @@
-# Create example folder
+# Create example folder structures
+
+## Makita (`example_makita`)
 
 Install ASReview and ASReview Makita
 ```sh
