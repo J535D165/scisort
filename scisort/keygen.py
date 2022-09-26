@@ -50,3 +50,9 @@ def scisort_keygen(f, alg=ns.PATH, **kwargs):
 
     else:
         return (len(FILE_RANKING),) + ns.natsort_keygen(alg=alg, **kwargs)(f)
+
+
+def scisort_keygen_pandas(s, alg=ns.PATH, **kwargs):
+
+    return s.map(lambda x: scisort_keygen(x, alg=alg, **kwargs))
+
