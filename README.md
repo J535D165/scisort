@@ -1,6 +1,9 @@
 # Scisort - Sort files optimized for science
 
-WIP
+Scisort is a fundamental package for sorting files in scientific repositories.
+It's is typically useful for data respositories and other tools. For end
+users, the tool [`scitree`](https://github.com/J535D165/scitree) is an
+example of a tool for printing a sorted tree.
 
 ## Installation
 
@@ -19,7 +22,7 @@ folders. The folder is sorted on the file or folder name. Some reasons why
 this sort is not intuitive:
 
 - README not on top
-- Numbered files naively sorted `output/simulation/Bos_2018/metrics_sim_Bos_2018_XXX.json`
+- Numbered files are naturally sorted.
 
 ```
 files = ['LICENSE.txt',
@@ -70,12 +73,17 @@ files = ['LICENSE.txt',
  'scripts/merge_metrics.py']
 ```
 
+The files and folders are real research output created with `ASReview-makita`
+(see [examples](examples)).
+
 ## Scisort sorting
 
-```python
-import scisort
+Scisort integrates with Python's `sorted` by supplying the sort key.
 
-sorted(files, key=scisort.scisort_keygen)
+```python
+from scisort import scisort_keygen
+
+sorted(files, key=scisort_keygen)
 ```
 
 ```python
@@ -125,6 +133,28 @@ sorted(files, key=scisort.scisort_keygen)
  'output/tables/data_metrics.csv',
  'output/tables/data_metrics.xlsx',
  'jobs.sh']
+```
+
+### Third party support
+
+Scisort also integrates with other libraries implementing sorting based on a key.
+
+#### Pandas
+
+```python
+import pandas as pd
+
+from scisort import scisort_keygen_pandas
+
+pd.Series(files).sort_values(key=scisort_keygen_pandas)
+```
+
+#### Natsort
+
+```python
+import natsort as ns
+
+ns.natsorted(files, key=scisort_keygen)
 ```
 
 ## License
