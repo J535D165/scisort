@@ -5,6 +5,16 @@ It's is typically useful for data respositories and other tools. For end
 users, the tool [`scitree`](https://github.com/J535D165/scitree) is an
 example of a tool for printing a sorted tree.
 
+## Philosophy of scisort
+
+- Read the README first, therefore I'm on top
+- Before you install or use the content, I open the LICENSE.
+- Files first, folders second
+- Numbered files are [naturally sorted](https://en.wikipedia.org/wiki/Natural_sort_order)
+- We love reproducible project structures
+- We ignore, what git ignores
+
+
 ## Installation
 
 Scisort requires Python 3.6 or later.
@@ -21,8 +31,6 @@ Consider the following project folder structure. It's a mixture of files and
 folders. The folder is sorted on the file or folder name. Some reasons why
 this sort is not intuitive:
 
-- README not on top
-- Numbered files are naturally sorted.
 
 ```
 files = ['LICENSE.txt',
