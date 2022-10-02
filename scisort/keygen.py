@@ -1,5 +1,5 @@
-import re
 import logging
+import re
 from pathlib import Path
 
 import natsort as ns
@@ -114,15 +114,18 @@ def scisort_keygen(f, alg=ns.PATH, **kwargs):
         else:
             raise ValueError("Matcher object not correctly configured")
 
-    ns_key = ns.natsort_keygen(alg=alg, **kwargs)(f)
-
     res = tuple()
     for fpart in Path(f).parts:
 
         m = _matcher(fpart, FILE_RANKING)
 
         if m is None:
-            k = (((len(FILE_RANKING.match_objs),), ns.natsort_keygen(alg=alg, **kwargs)(fpart)),)
+            k = (
+                (
+                    (len(FILE_RANKING.match_objs),),
+                    ns.natsort_keygen(alg=alg, **kwargs)(fpart),
+                ),
+            )
             res = res + k
             continue
 

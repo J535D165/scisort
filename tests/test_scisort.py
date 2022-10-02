@@ -1,8 +1,8 @@
-from scisort import scisort_keygen, scisort_keygen_pandas
-
 import pandas as pd
-
 from pandas.testing import assert_series_equal
+
+from scisort import scisort_keygen
+from scisort import scisort_keygen_pandas
 
 tree = [
     ".flake8",
@@ -14,7 +14,7 @@ tree = [
     "scripts",
     "installation.R",
     "requirements.txt",
-    "tests"
+    "tests",
 ]
 
 tree_expected = [
@@ -27,7 +27,7 @@ tree_expected = [
     "data/a (11).csv",
     "scripts",
     ".flake8",
-    "tests"
+    "tests",
 ]
 
 
@@ -42,6 +42,5 @@ def test_keygen_pandas():
     s_exp = pd.Series(tree_expected)
 
     assert_series_equal(
-        s.sort_values(ignore_index=True, key=scisort_keygen_pandas),
-        s_exp
+        s.sort_values(ignore_index=True, key=scisort_keygen_pandas), s_exp
     )
