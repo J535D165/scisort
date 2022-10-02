@@ -3,17 +3,17 @@ from pathlib import Path
 
 import natsort as ns
 
-from scisort.api import MatchGroup
+from scisort.api import Group
 from scisort.api import Pattern
 
-SCISORT_DEFAULT = MatchGroup(
+SCISORT_DEFAULT = Group(
     [
         # level: Landing docs
-        MatchGroup([Pattern(regexp=r"read[-_\s]{0,1}me.*")], name="doc_landing"),
+        Group([Pattern(regexp=r"read[-_\s]{0,1}me.*")], name="doc_landing"),
         # level: License
-        MatchGroup([Pattern(regexp=r"license.*")], name="license"),
+        Group([Pattern(regexp=r"license.*")], name="license"),
         # level: Installation
-        MatchGroup(
+        Group(
             [
                 Pattern(regexp=r"installation.*"),
                 Pattern(regexp=r"install.*"),
@@ -23,19 +23,29 @@ SCISORT_DEFAULT = MatchGroup(
             name="installation",
         ),
         # level: Citation
-        MatchGroup([Pattern(regexp=r"citation.*")], name="citation"),
+        Group([Pattern(regexp=r"citation.*")], name="citation"),
         # level: Config & hidden
-        MatchGroup([Pattern(regexp=r"\..*")], name="config"),
-        # level: Data
-        MatchGroup(
+        Group([Pattern(regexp=r"\..*")], name="config"),
+        # level: Executables
+        Group(
             [
-                MatchGroup(
+                Pattern(regexp=r".*\.sh"),
+                Pattern(regexp=r".*\.bat"),
+                Pattern(regexp=r".*\.bash"),
+                Pattern(regexp=r".*\.exe"),
+            ],
+            name="executable",
+        ),
+        # level: Data
+        Group(
+            [
+                Group(
                     [
                         Pattern(regexp=r"raw[-_\s]{0,1}data.*"),
                         Pattern(regexp=r"data[-_\s]{0,1}raw.*"),
                     ]
                 ),
-                MatchGroup(
+                Group(
                     [
                         Pattern(regexp=r"clean[-_\s]{0,1}data.*"),
                         Pattern(regexp=r"data[-_\s]{0,1}clean.*"),
@@ -46,7 +56,7 @@ SCISORT_DEFAULT = MatchGroup(
             name="data",
         ),
         # level: Scripts
-        MatchGroup(
+        Group(
             [
                 Pattern(regexp=r"scripts.*"),
                 Pattern(regexp=r"src.*"),
@@ -55,13 +65,11 @@ SCISORT_DEFAULT = MatchGroup(
             name="scripts",
         ),
         # level: Results
-        MatchGroup(
+        Group(
             [Pattern(regexp=r"output.*"), Pattern(regexp=r"results.*")], name="results"
         ),
         # level: Tests
-        MatchGroup(
-            [Pattern(regexp=r"test.*")], name="tests"
-        ),
+        Group([Pattern(regexp=r"test.*")], name="tests"),
     ]
 )
 
@@ -71,7 +79,7 @@ def scisort_keygen(f, pattern=SCISORT_DEFAULT, **kwargs):
 
     def _matcher(s, group_or_pattern, rank=tuple()):
 
-        if isinstance(group_or_pattern, MatchGroup):
+        if isinstance(group_or_pattern, Group):
 
             for rank_sub, match_obj in enumerate(group_or_pattern.match_objs):
                 m = _matcher(s, match_obj, rank + (rank_sub,))

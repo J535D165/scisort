@@ -28,10 +28,10 @@ class Pattern(object):
         raise ValueError("Can't compute score")
 
 
-class MatchGroup(object):
-    """docstring for MatchGroup"""
+class Group(object):
+    """docstring for Group"""
 
     def __init__(self, match_objs, name=None):
-        super(MatchGroup, self).__init__()
+        super(Group, self).__init__()
         self.match_objs = match_objs
         self.name = name
