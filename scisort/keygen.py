@@ -1,4 +1,5 @@
 import re
+import logging
 
 import natsort as ns
 
@@ -106,14 +107,18 @@ def scisort_keygen(f, alg=ns.PATH, **kwargs):
                     return m
         elif isinstance(group_or_pattern, Pattern):
             if group_or_pattern.score(f):
-                return rank + ns.natsort_keygen(alg=alg, **kwargs)(f)
+                k = rank + ns.natsort_keygen(alg=alg, **kwargs)(f)
+                logging.debug(k)
+                return k
         else:
             raise ValueError("Matcher object not correctly configured")
 
     m = _matcher(FILE_RANKING)
 
     if m is None:
-        return (len(FILE_RANKING.match_objs),) + ns.natsort_keygen(alg=alg, **kwargs)(f)
+        k = (len(FILE_RANKING.match_objs),) + ns.natsort_keygen(alg=alg, **kwargs)(f)
+        logging.debug(k)
+        return k
 
     return m
 
