@@ -1,47 +1,12 @@
 import logging
-import re
 from pathlib import Path
 
 import natsort as ns
 
+from scisort.api import MatchGroup
+from scisort.api import Pattern
 
-class Pattern(object):
-    """File or folder object to match on."""
-
-    def __init__(self, s=None, regexp=None, lower=True):
-        super(Pattern, self).__init__()
-        self.s = s
-        self.regexp = regexp
-        self.lower = lower
-
-    def score(self, fp):
-
-        if self.regexp:
-
-            if self.lower:
-                flags = re.IGNORECASE
-
-            p = re.compile(self.regexp, flags=flags)
-
-            return p.match(fp)
-
-        if self.s:
-
-            return isinstance(fp, str) and fp == self.s
-
-        raise ValueError("Can't compute score")
-
-
-class MatchGroup(object):
-    """docstring for MatchGroup"""
-
-    def __init__(self, match_objs, name=None):
-        super(MatchGroup, self).__init__()
-        self.match_objs = match_objs
-        self.name = name
-
-
-FILE_RANKING = MatchGroup(
+SCISORT_DEFAULT = MatchGroup(
     [
         # level: Landing docs
         MatchGroup([Pattern(regexp=r"read[-_\s]{0,1}me.*")], name="doc_landing"),
@@ -95,7 +60,7 @@ FILE_RANKING = MatchGroup(
 )
 
 
-def scisort_keygen(f, **kwargs):
+def scisort_keygen(f, pattern=SCISORT_DEFAULT, **kwargs):
     """Key for scientific file sorting."""
 
     def _matcher(s, group_or_pattern, rank=tuple()):
@@ -117,12 +82,12 @@ def scisort_keygen(f, **kwargs):
     res = tuple()
     for fpart in Path(f).parts:
 
-        m = _matcher(fpart, FILE_RANKING)
+        m = _matcher(fpart, pattern)
 
         if m is None:
             k = (
                 (
-                    (len(FILE_RANKING.match_objs),),
+                    (len(pattern.match_objs),),
                     ns.natsort_keygen(alg=ns.PATH, **kwargs)(fpart),
                 ),
             )
