@@ -95,7 +95,7 @@ FILE_RANKING = MatchGroup(
 )
 
 
-def scisort_keygen(f, alg=ns.PATH, **kwargs):
+def scisort_keygen(f, **kwargs):
     """Key for scientific file sorting."""
 
     def _matcher(s, group_or_pattern, rank=tuple()):
@@ -109,7 +109,7 @@ def scisort_keygen(f, alg=ns.PATH, **kwargs):
         elif isinstance(group_or_pattern, Pattern):
             if group_or_pattern.score(s):
 
-                k = ((rank, ns.natsort_keygen(alg=alg, **kwargs)(s)),)
+                k = ((rank, ns.natsort_keygen(alg=ns.PATH, **kwargs)(s)),)
                 return k
         else:
             raise ValueError("Matcher object not correctly configured")
@@ -123,7 +123,7 @@ def scisort_keygen(f, alg=ns.PATH, **kwargs):
             k = (
                 (
                     (len(FILE_RANKING.match_objs),),
-                    ns.natsort_keygen(alg=alg, **kwargs)(fpart),
+                    ns.natsort_keygen(alg=ns.PATH, **kwargs)(fpart),
                 ),
             )
             res = res + k
@@ -136,6 +136,6 @@ def scisort_keygen(f, alg=ns.PATH, **kwargs):
     return res
 
 
-def scisort_keygen_pandas(s, alg=ns.PATH, **kwargs):
+def scisort_keygen_pandas(s, **kwargs):
 
-    return s.map(lambda x: scisort_keygen(x, alg=alg, **kwargs))
+    return s.map(lambda x: scisort_keygen(x, **kwargs))
