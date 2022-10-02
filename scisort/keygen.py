@@ -1,5 +1,6 @@
 import re
 import logging
+from pathlib import Path
 
 import natsort as ns
 
@@ -97,30 +98,39 @@ FILE_RANKING = MatchGroup(
 def scisort_keygen(f, alg=ns.PATH, **kwargs):
     """Key for scientific file sorting."""
 
-    def _matcher(group_or_pattern, rank=tuple()):
+    def _matcher(s, group_or_pattern, rank=tuple()):
 
         if isinstance(group_or_pattern, MatchGroup):
 
             for rank_sub, match_obj in enumerate(group_or_pattern.match_objs):
-                m = _matcher(match_obj, rank + (rank_sub,))
+                m = _matcher(s, match_obj, rank + (rank_sub,))
                 if m:
                     return m
         elif isinstance(group_or_pattern, Pattern):
-            if group_or_pattern.score(f):
-                k = rank + ns.natsort_keygen(alg=alg, **kwargs)(f)
-                logging.debug(k)
+            if group_or_pattern.score(s):
+
+                k = ((rank, ns.natsort_keygen(alg=alg, **kwargs)(s)),)
                 return k
         else:
             raise ValueError("Matcher object not correctly configured")
 
-    m = _matcher(FILE_RANKING)
+    ns_key = ns.natsort_keygen(alg=alg, **kwargs)(f)
 
-    if m is None:
-        k = (len(FILE_RANKING.match_objs),) + ns.natsort_keygen(alg=alg, **kwargs)(f)
-        logging.debug(k)
-        return k
+    res = tuple()
+    for fpart in Path(f).parts:
 
-    return m
+        m = _matcher(fpart, FILE_RANKING)
+
+        if m is None:
+            k = (((len(FILE_RANKING.match_objs),), ns.natsort_keygen(alg=alg, **kwargs)(fpart)),)
+            res = res + k
+            continue
+
+        res = res + m
+
+    logging.debug(res)
+
+    return res
 
 
 def scisort_keygen_pandas(s, alg=ns.PATH, **kwargs):

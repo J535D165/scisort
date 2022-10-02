@@ -9,7 +9,7 @@ tree = [
     "data",
     "data/a (11).csv",
     "data/a (8).csv.gz",
-    "data/README.md",
+    "data/readme.md",
     "README.md",
     "scripts",
     "installation.R",
@@ -21,12 +21,12 @@ tree_expected = [
     "README.md",
     "installation.R",
     "requirements.txt",
-    ".flake8",
     "data",
-    "data/a (8).csv",
-    "data/a (11).csv.gz",
-    "data/README.md",
+    "data/readme.md",
+    "data/a (8).csv.gz",
+    "data/a (11).csv",
     "scripts",
+    ".flake8",
     "tests"
 ]
 
