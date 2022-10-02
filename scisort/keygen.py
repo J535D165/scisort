@@ -24,6 +24,8 @@ SCISORT_DEFAULT = MatchGroup(
         ),
         # level: Citation
         MatchGroup([Pattern(regexp=r"citation.*")], name="citation"),
+        # level: Config & hidden
+        MatchGroup([Pattern(regexp=r"\..*")], name="config"),
         # level: Data
         MatchGroup(
             [
@@ -55,6 +57,10 @@ SCISORT_DEFAULT = MatchGroup(
         # level: Results
         MatchGroup(
             [Pattern(regexp=r"output.*"), Pattern(regexp=r"results.*")], name="results"
+        ),
+        # level: Tests
+        MatchGroup(
+            [Pattern(regexp=r"test.*")], name="tests"
         ),
     ]
 )

@@ -21,12 +21,12 @@ tree_expected = [
     "README.md",
     "installation.R",
     "requirements.txt",
+    ".flake8",
     "data",
     "data/readme.md",
     "data/a (8).csv.gz",
     "data/a (11).csv",
     "scripts",
-    ".flake8",
     "tests",
 ]
 
