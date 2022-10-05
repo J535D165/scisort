@@ -11,6 +11,7 @@ tree = [
     "data/a (8).csv.gz",
     "data/readme.md",
     "jobs.sh",
+    "random_file.xyz",
     "README.md",
     "scripts",
     "installation.R",
@@ -23,6 +24,7 @@ tree_expected = [
     "installation.R",
     "requirements.txt",
     ".flake8",
+    "random_file.xyz",
     "jobs.sh",
     "data",
     "data/readme.md",
@@ -31,6 +33,25 @@ tree_expected = [
     "scripts",
     "tests",
 ]
+
+def test_keygen_readme():
+
+    assert scisort_keygen("readme.md")[0][0][0] == 0
+
+
+def test_keygen_jobs():
+
+    assert scisort_keygen("jobs.sh")[0][0][0] == 6
+
+
+def test_keygen_no_match():
+
+    assert scisort_keygen("jobs.xyz")[0][0][0] == 5
+
+
+def test_keygen_data():
+
+    assert scisort_keygen("data")[0][0][0] == 7
 
 
 def test_keygen_sorted():

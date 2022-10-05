@@ -25,7 +25,9 @@ SCISORT_DEFAULT = Group(
         # level: Citation
         Group([Pattern(regexp=r"citation.*")], name="citation"),
         # level: Config & hidden
-        Group([Pattern(regexp=r"\..*")], name="config"),
+        Pattern(regexp=r"\..*"),
+        # level: All other files without extensions
+        Pattern(regexp=r".*\..*", stop_search=False),
         # level: Executables
         Group(
             [
@@ -77,21 +79,46 @@ SCISORT_DEFAULT = Group(
 def scisort_keygen(f, pattern=SCISORT_DEFAULT, **kwargs):
     """Key for scientific file sorting."""
 
-    def _matcher(s, group_or_pattern, rank=tuple()):
+    def _matcher(f_sub, gr, rank=tuple()):
 
-        if isinstance(group_or_pattern, Group):
+        if not isinstance(gr, Group):
+            raise ValueError("Expected Group")
 
-            for rank_sub, match_obj in enumerate(group_or_pattern.match_objs):
-                m = _matcher(s, match_obj, rank + (rank_sub,))
-                if m:
-                    return m
-        elif isinstance(group_or_pattern, Pattern):
-            if group_or_pattern.score(s):
+        latest_k = None
 
-                k = ((rank, ns.natsort_keygen(alg=ns.PATH, **kwargs)(s)),)
-                return k
-        else:
-            raise ValueError("Matcher object not correctly configured")
+        # iter over patterns
+        for rank_group, match_obj in enumerate(gr.match_objs):
+
+            if isinstance(match_obj, Group):
+                k = _matcher(
+                    f_sub,
+                    match_obj,
+                    rank=rank + (rank_group,),
+                )
+
+                if k and match_obj.stop_search:
+                    latest_k = k
+                    return latest_k
+
+            # the object is a pattern
+            if isinstance(match_obj, Pattern):
+
+                # there is a match with the file/folder
+                if match_obj.score(f_sub):
+
+                    # set the result of the sorting to k
+                    latest_k = (
+                        (
+                            rank + (rank_group,),
+                            ns.natsort_keygen(alg=ns.PATH, **kwargs)(f_sub),
+                        ),
+                    )
+
+                    # stop the search if given
+                    if match_obj.stop_search:
+                        return latest_k
+
+        return latest_k
 
     res = tuple()
     for fpart in Path(f).parts:
