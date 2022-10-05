@@ -97,6 +97,7 @@ sorted(files, key=scisort_keygen)
 ```python
 ['README.md',
  'LICENSE.txt',
+ 'jobs.sh',
  'data',
  'data/Bos_2018.csv',
  'scripts',
@@ -106,11 +107,6 @@ sorted(files, key=scisort_keygen)
  'output',
  'output/simulation',
  'output/simulation/Bos_2018',
- 'output/simulation/Bos_2018/descriptives',
- 'output/simulation/Bos_2018/descriptives/data_stats_Bos_2018.json',
- 'output/simulation/Bos_2018/descriptives/wordcloud_Bos_2018.png',
- 'output/simulation/Bos_2018/descriptives/wordcloud_irrelevant_Bos_2018.png',
- 'output/simulation/Bos_2018/descriptives/wordcloud_relevant_Bos_2018.png',
  'output/simulation/Bos_2018/metrics_sim_Bos_2018_0.json',
  'output/simulation/Bos_2018/metrics_sim_Bos_2018_6.json',
  'output/simulation/Bos_2018/metrics_sim_Bos_2018_559.json',
@@ -123,6 +119,11 @@ sorted(files, key=scisort_keygen)
  'output/simulation/Bos_2018/metrics_sim_Bos_2018_4699.json',
  'output/simulation/Bos_2018/metrics_sim_Bos_2018_5673.json',
  'output/simulation/Bos_2018/plot_recall_sim_Bos_2018.png',
+ 'output/simulation/Bos_2018/descriptives',
+ 'output/simulation/Bos_2018/descriptives/wordcloud_Bos_2018.png',
+ 'output/simulation/Bos_2018/descriptives/wordcloud_irrelevant_Bos_2018.png',
+ 'output/simulation/Bos_2018/descriptives/wordcloud_relevant_Bos_2018.png',
+ 'output/simulation/Bos_2018/descriptives/data_stats_Bos_2018.json',
  'output/simulation/Bos_2018/state_files',
  'output/simulation/Bos_2018/state_files/sim_Bos_2018_0.asreview',
  'output/simulation/Bos_2018/state_files/sim_Bos_2018_6.asreview',
@@ -139,8 +140,7 @@ sorted(files, key=scisort_keygen)
  'output/tables/data_descriptives.csv',
  'output/tables/data_descriptives.xlsx',
  'output/tables/data_metrics.csv',
- 'output/tables/data_metrics.xlsx',
- 'jobs.sh']
+ 'output/tables/data_metrics.xlsx']
 ```
 
 ### Third party support
