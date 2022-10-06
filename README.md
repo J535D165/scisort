@@ -1,6 +1,6 @@
 [![scisort_repocard.svg](https://github.com/J535D165/scisort/raw/main/scisort_repocard.svg)](github.com/j535d165/scisort)
 
-# Scisort - Sort files optimized for science
+# Scisort - Sort files in science projects
 
 Scisort is a fundamental package for sorting files in scientific repositories.
 It's is typically useful for data respositories and other tools. For end
