@@ -1,4 +1,4 @@
-[![scisort_repocard.png](https://github.com/J535D165/scisort/raw/main/scisort_repocard.png)](github.com/j535d165/scisort)
+[![scisort_repocard.svg](https://github.com/J535D165/scisort/raw/main/scisort_repocard.svg)](github.com/j535d165/scisort)
 
 # Scisort - Sort files optimized for science
 
