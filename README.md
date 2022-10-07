@@ -13,8 +13,8 @@ example of a tool for printing a sorted tree.
 - Before I install or use the content, I open the [LICENSE](https://choosealicense.com/).
 - Files first, folders second
 - Numbered files are [naturally sorted](https://en.wikipedia.org/wiki/Natural_sort_order)
-- We love [intuitive and reproducible project structures](https://doi.org/10.1371/journal.pcbi.1005510)
-- We ignore, what git ignores\*
+- I love [intuitive and reproducible project structures](https://doi.org/10.1371/journal.pcbi.1005510)
+- I ignore, what git ignores\*
 
 *\* Only for [`scitree`](https://github.com/J535D165/scitree).*
 
