@@ -10,12 +10,15 @@ example of a tool for printing a sorted tree.
 ## Philosophy of scisort
 
 - Read the README first, therefore I'm on top
-- Before you install or use the content, I open the LICENSE.
+- Before I install or use the content, I open the [LICENSE](https://choosealicense.com/).
 - Files first, folders second
 - Numbered files are [naturally sorted](https://en.wikipedia.org/wiki/Natural_sort_order)
-- We love reproducible project structures
-- We ignore, what git ignores
+- We love [intuitive and reproducible project structures](https://doi.org/10.1371/journal.pcbi.1005510)
+- We ignore, what git ignores\*
 
+*\* Only for [`scitree`](https://github.com/J535D165/scitree).*
+
+For more information about the structure, see [scisort/keygen.py](scisort/keygen.py). 
 
 ## Installation
 
