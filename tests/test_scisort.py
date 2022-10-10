@@ -34,6 +34,7 @@ tree_expected = [
     "tests",
 ]
 
+
 def test_keygen_readme():
 
     assert scisort_keygen("readme.md")[0][0][0] == 0
