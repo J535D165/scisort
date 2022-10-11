@@ -1,4 +1,8 @@
-[![scisort_repocard.svg](https://github.com/J535D165/scisort/raw/main/scisort_repocard.svg)](github.com/j535d165/scisort)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/J535D165/scisort/raw/main/scisort_repocard_dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/J535D165/scisort/raw/main/scisort_repocard.svg">
+  <img alt="Scisort - Sort files in science projects." src="https://github.com/J535D165/scisort/raw/main/scisort_repocard.svg">
+</picture>
 
 # Scisort - Sort files in science projects
 
