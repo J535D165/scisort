@@ -18,6 +18,7 @@ example of a tool for printing a sorted tree.
 - Files first, folders second
 - Numbered files are [naturally sorted](https://en.wikipedia.org/wiki/Natural_sort_order)
 - I love [intuitive and reproducible project structures](https://doi.org/10.1371/journal.pcbi.1005510)
+- Follow the order of execution where possible
 - I ignore, what git ignores\*
 
 *\* Only for [`scitree`](https://github.com/J535D165/scitree).*
