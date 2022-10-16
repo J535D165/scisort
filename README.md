@@ -11,7 +11,9 @@ It's is typically useful for data respositories and other tools. For end
 users, the tool [`scitree`](https://github.com/J535D165/scitree) is an
 example of a tool for printing a sorted tree.
 
-## Philosophy of scisort
+## Philosophy
+
+Philosophy of scisort and [scitree](https://github.com/J535D165/scitree):
 
 - Read the README first, therefore I'm on top
 - Before I install or use the content, I open the [LICENSE](https://choosealicense.com/).
@@ -23,7 +25,7 @@ example of a tool for printing a sorted tree.
 
 *\* Only for [`scitree`](https://github.com/J535D165/scitree).*
 
-For more information about the structure, see [scisort/keygen.py](scisort/keygen.py). 
+For more information about the structure, see [https://github.com/J535D165/scisort/scisort/keygen.py](scisort/keygen.py). 
 
 ## Installation
 
