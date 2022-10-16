@@ -1,5 +1,13 @@
 # Create example folder structures
 
+The following sections provide examples of project (interesting) project structures. Download the
+files and list them with the following Python code:
+
+```python
+from pathlib import Path
+files = list(map(str,Path(".").glob("**/*")))
+```
+
 ## Makita (`example_makita`)
 
 Install ASReview and ASReview Makita
@@ -15,11 +23,6 @@ cd example/example_makita/
 asreview makita template arfi
 touch LICENSE.txt
 sh jobs.sh
-```
-
-
-```python
-files = list(map(str,Path(".").glob("**/*")))
 ```
 
 ## 10.5281/zenodo.4161444 (With Datahugger)
