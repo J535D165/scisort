@@ -52,7 +52,7 @@ folders. The folder is sorted on the file or folder name. Some reasons why
 this sort is not intuitive:
 
 
-```
+```python
 files = ['LICENSE.txt',
  'README.md',
  'data',
