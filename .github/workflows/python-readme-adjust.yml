@@ -19,7 +19,12 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install build
+        pip install build setuptools_scm
+    - name: Adjust readme
+      run: |
+        python -m setuptools_scm
+        echo "test" > README.md
+        python -m setuptools_scm
     - name: Build package
       run: python -m build
     - name: testme
