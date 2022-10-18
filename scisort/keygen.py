@@ -76,72 +76,116 @@ SCISORT_DEFAULT = Group(
 )
 
 
-def scisort_keygen(f, pattern=SCISORT_DEFAULT, **kwargs):
-    """Key for scientific file sorting."""
+def scisort_keygen(pattern=SCISORT_DEFAULT, **kwargs):
+    """Key for scientific file sorting.
 
-    def _matcher(f_sub, gr, rank=tuple()):
+    Arguments
+    ---------
+    pattern: scisort.api.Group
+        Sort pattern or algorithm composed from groups and
+        Patterns.
+    **kwargs:
+        Additional keyword arguments to be passed to
+        natsort.natsort_keygen.
 
-        if not isinstance(gr, Group):
-            raise ValueError("Expected Group")
+    Returns
+    -------
 
-        latest_k = None
+    type:
+        A function that parses input for scientific sorting that
+        is suitable for passing as the key argument to functions
+        such as sorted.
+    """
 
-        # iter over patterns
-        for rank_group, match_obj in enumerate(gr.match_objs):
+    def _scisort_key(f, pattern=SCISORT_DEFAULT, **kwargs):
+        def _matcher(f_sub, gr, rank=tuple()):
 
-            if isinstance(match_obj, Group):
-                k = _matcher(
-                    f_sub,
-                    match_obj,
-                    rank=rank + (rank_group,),
-                )
+            if not isinstance(gr, Group):
+                raise ValueError("Expected Group")
 
-                if k and match_obj.stop_search:
-                    latest_k = k
-                    return latest_k
+            latest_k = None
 
-            # the object is a pattern
-            if isinstance(match_obj, Pattern):
+            # iter over patterns
+            for rank_group, match_obj in enumerate(gr.match_objs):
 
-                # there is a match with the file/folder
-                if match_obj.score(f_sub):
-
-                    # set the result of the sorting to k
-                    latest_k = (
-                        (
-                            rank + (rank_group,),
-                            ns.natsort_keygen(alg=ns.PATH, **kwargs)(f_sub),
-                        ),
+                if isinstance(match_obj, Group):
+                    k = _matcher(
+                        f_sub,
+                        match_obj,
+                        rank=rank + (rank_group,),
                     )
 
-                    # stop the search if given
-                    if match_obj.stop_search:
+                    if k and match_obj.stop_search:
+                        latest_k = k
                         return latest_k
 
-        return latest_k
+                # the object is a pattern
+                if isinstance(match_obj, Pattern):
 
-    res = tuple()
-    for fpart in Path(f).parts:
+                    # there is a match with the file/folder
+                    if match_obj.score(f_sub):
 
-        m = _matcher(fpart, pattern)
+                        # set the result of the sorting to k
+                        latest_k = (
+                            (
+                                rank + (rank_group,),
+                                ns.natsort_keygen(alg=ns.PATH, **kwargs)(f_sub),
+                            ),
+                        )
 
-        if m is None:
-            k = (
-                (
-                    (len(pattern.match_objs),),
-                    ns.natsort_keygen(alg=ns.PATH, **kwargs)(fpart),
-                ),
-            )
-            res = res + k
-            continue
+                        # stop the search if given
+                        if match_obj.stop_search:
+                            return latest_k
 
-        res = res + m
+            return latest_k
 
-    logging.debug(res)
+        res = tuple()
+        for fpart in Path(f).parts:
 
-    return res
+            m = _matcher(fpart, pattern)
+
+            if m is None:
+                k = (
+                    (
+                        (len(pattern.match_objs),),
+                        ns.natsort_keygen(alg=ns.PATH, **kwargs)(fpart),
+                    ),
+                )
+                res = res + k
+                continue
+
+            res = res + m
+
+        logging.debug(res)
+
+        return res
+
+    return _scisort_key
 
 
-def scisort_keygen_pandas(s, **kwargs):
+def scisort_keygen_pandas(**kwargs):
+    """Key for scientific file sorting in Pandas.
 
-    return s.map(lambda x: scisort_keygen(x, **kwargs))
+    Arguments
+    ---------
+    pattern: scisort.api.Group
+        Sort pattern or algorithm composed from groups and
+        Patterns.
+    **kwargs:
+        Additional keyword arguments to be passed to
+        natsort.natsort_keygen.
+
+    Returns
+    -------
+
+    type:
+        A function that parses input for scientific sorting that
+        is suitable for passing as the key argument to pandas sort
+        functions.
+    """
+
+    def _scisort_key_pandas(s, **kwargs):
+
+        return s.map(scisort_keygen(**kwargs))
+
+    return _scisort_key_pandas

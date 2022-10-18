@@ -111,7 +111,7 @@ Scisort integrates with Python's `sorted` by supplying the sort key.
 ```python
 from scisort import scisort_keygen
 
-sorted(files, key=scisort_keygen)
+sorted(files, key=scisort_keygen())
 ```
 
 ```python
@@ -175,7 +175,7 @@ import pandas as pd
 
 from scisort import scisort_keygen_pandas
 
-pd.Series(files).sort_values(key=scisort_keygen_pandas)
+pd.Series(files).sort_values(key=scisort_keygen_pandas())
 ```
 
 #### Natsort
@@ -183,7 +183,7 @@ pd.Series(files).sort_values(key=scisort_keygen_pandas)
 ```python
 import natsort as ns
 
-ns.natsorted(files, key=scisort_keygen)
+ns.natsorted(files, key=scisort_keygen())
 ```
 
 ## License

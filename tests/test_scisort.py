@@ -37,27 +37,27 @@ tree_expected = [
 
 def test_keygen_readme():
 
-    assert scisort_keygen("readme.md")[0][0][0] == 0
+    assert scisort_keygen()("readme.md")[0][0][0] == 0
 
 
 def test_keygen_jobs():
 
-    assert scisort_keygen("jobs.sh")[0][0][0] == 6
+    assert scisort_keygen()("jobs.sh")[0][0][0] == 6
 
 
 def test_keygen_no_match():
 
-    assert scisort_keygen("jobs.xyz")[0][0][0] == 5
+    assert scisort_keygen()("jobs.xyz")[0][0][0] == 5
 
 
 def test_keygen_data():
 
-    assert scisort_keygen("data")[0][0][0] == 7
+    assert scisort_keygen()("data")[0][0][0] == 7
 
 
 def test_keygen_sorted():
 
-    assert sorted(tree, key=scisort_keygen) == tree_expected
+    assert sorted(tree, key=scisort_keygen()) == tree_expected
 
 
 def test_keygen_pandas():
@@ -66,5 +66,5 @@ def test_keygen_pandas():
     s_exp = pd.Series(tree_expected)
 
     assert_series_equal(
-        s.sort_values(ignore_index=True, key=scisort_keygen_pandas), s_exp
+        s.sort_values(ignore_index=True, key=scisort_keygen_pandas()), s_exp
     )
