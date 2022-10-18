@@ -4,14 +4,19 @@
   <img alt="Scisort - Sort files in science projects." src="https://github.com/J535D165/scisort/raw/main/scisort_repocard.svg">
 </picture>
 
-# Scisort - Sort files in science projects
+# Scisort - Sort files in research projects
 
-Scisort is a fundamental package for sorting files in scientific repositories.
-It's is typically useful for data respositories and other tools. For end
-users, the tool [`scitree`](https://github.com/J535D165/scitree) is an
-example of a tool for printing a sorted tree.
+Scisort is a Python package for sorting files in research projects and
+scientific (data) repositories. Files and folders are sorted in such a way
+that inspecting folders in research projects is more intuitive. See the
+philosophy of scisort to understand the sorting algorithm.
 
-## Philosophy
+Since scisort is a low-level API, most researchers, developers, and data
+scientists may be more interested in [`scitree`]
+(https://github.com/J535D165/scitree). Scitree is a smart recursive directory
+listing program that makes use of scisort.
+
+## Philosophy of scisort
 
 Philosophy of scisort and [scitree](https://github.com/J535D165/scitree):
 
@@ -157,7 +162,8 @@ sorted(files, key=scisort_keygen)
 
 ### Third party support
 
-Scisort also integrates with other libraries implementing sorting based on a key.
+Scisort also integrates with other libraries implementing sorting based on a
+key.
 
 #### Pandas
 
