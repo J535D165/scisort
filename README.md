@@ -96,7 +96,7 @@ files = ['LICENSE.txt',
 The files and folders are real research output created with `ASReview-makita`
 (see [examples](examples)).
 
-## Scisort sorting
+### Scisort sorting
 
 Scisort integrates with Python's `sorted` by supplying the sort key.
 
