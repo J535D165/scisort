@@ -9,12 +9,15 @@
 Scisort is a Python package for sorting files in research projects and
 scientific (data) repositories. Files and folders are sorted in such a way
 that inspecting folders in research projects is more intuitive. See the
-philosophy of scisort to understand the sorting algorithm.
+[philosophy of scisort](#philosophy-of-scisort) to understand the sorting algorithm.
+
+--- 
 
 Since scisort is a low-level API, most researchers, developers, and data
-scientists may be more interested in [`scitree`]
-(https://github.com/J535D165/scitree). Scitree is a smart recursive directory
-listing program that makes use of scisort.
+scientists may be more interested in [`scitree`](https://github.com/J535D165/scitree).
+Scitree is a smart recursive directory listing program that makes use of scisort.
+
+---
 
 ## Philosophy of scisort
 
