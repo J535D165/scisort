@@ -26,7 +26,7 @@ jobs:
       run: |
         ls
         python -m setuptools_scm
-        mv README.md README_PYPI.md
+        cp README.md README_PYPI.md
         ls
         python -m setuptools_scm
     - name: Build package
