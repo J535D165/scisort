@@ -1,6 +1,6 @@
 [project]
 name = "scisort"
-description = "One downloader for many scientific data and code repositories!"
+description = "Smart sorting algorithm for files and folders in research projects and repositories"
 authors = [
     { name = "Jonathan de Bruin", email = "jonathandebruinos@gmail.com" }
 ]
