@@ -26,7 +26,8 @@ jobs:
       run: |
         ls
         python -m setuptools_scm
-        echo "test" > README_PYPI.md
+        mv README.md README_PYPI.md
+        ls
         python -m setuptools_scm
     - name: Build package
       run: python -m build
