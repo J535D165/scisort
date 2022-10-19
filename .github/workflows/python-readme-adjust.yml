@@ -25,10 +25,11 @@ jobs:
     - name: Adjust readme
       run: |
         python -m setuptools_scm
-        echo "test" > README.md
+        echo "test" > README_PYPI.md
         python -m setuptools_scm
     - name: Build package
       run: python -m build
     - name: testme
       run: |
+       ls dist
        ls
