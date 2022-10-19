@@ -4,7 +4,7 @@ description = "One downloader for many scientific data and code repositories!"
 authors = [
     { name = "Jonathan de Bruin", email = "jonathandebruinos@gmail.com" }
 ]
-readme = "README.md"
+readme = "README_PYPI.md"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "License :: OSI Approved :: MIT License",
