@@ -1,8 +1,10 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/J535D165/scisort/raw/main/scisort_repocard_dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/J535D165/scisort/raw/main/scisort_repocard.svg">
-  <img alt="Scisort - Sort files in science projects." src="https://github.com/J535D165/scisort/raw/main/scisort_repocard.svg">
-</picture>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/J535D165/scisort/raw/main/scisort_repocard_dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/J535D165/scisort/raw/main/scisort_repocard.svg">
+    <img alt="Scisort - Sort files in science projects." src="https://github.com/J535D165/scisort/raw/main/scisort_repocard.svg">
+  </picture>
+</p>
 
 # Scisort - Sort files in research projects
 
