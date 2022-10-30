@@ -4,6 +4,8 @@
 
 # Scisort - Sort files in research projects
 
+![PyPI](https://img.shields.io/pypi/v/scisort) [![DOI](https://zenodo.org/badge/540602039.svg)](https://zenodo.org/badge/latestdoi/540602039)
+
 Scisort is a Python package for sorting files in research projects and
 scientific (data) repositories. Files and folders are sorted in such a way
 that inspecting folders in research projects is more intuitive. See the
